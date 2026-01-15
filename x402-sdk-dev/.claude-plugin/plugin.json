@@ -1,0 +1,8 @@
+{
+  "name": "x402-sdk-dev",
+  "description": "Bankr SDK integration for AI-assisted Web3 development with multi-chain DeFi and x402 micropayments",
+  "author": {
+    "name": "Bankr",
+    "email": "support@bankr.bot"
+  }
+}
