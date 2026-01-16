@@ -8,13 +8,13 @@
   },
   "plugins": [
     {
-      "name": "bankr",
+      "name": "bankr-agent",
       "description": "Integration with Bankr API for crypto trading, market analysis, and Polymarket predictions",
       "author": {
         "name": "Bankr",
         "email": "support@bankr.bot"
       },
-      "source": "./bankr",
+      "source": "./bankr-agent",
       "category": "tools",
       "homepage": "https://bankr.bot"
     },
