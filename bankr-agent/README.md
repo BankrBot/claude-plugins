@@ -11,17 +11,18 @@ Integration with the Bankr API for crypto trading, market analysis, and Polymark
 ## Prerequisites
 
 - Bankr API key (get one at https://bankr.bot/api)
-- Bankr Club membership
 - [Bun](https://bun.sh) runtime
 
 ## Installation
 
 1. Set your environment variable:
+
    ```bash
    export BANKR_API_KEY=bk_your_api_key_here
    ```
 
 2. Build the MCP server:
+
    ```bash
    cd mcp-server
    bun install
@@ -43,16 +44,17 @@ The bankr-agent automatically triggers on:
 - **Polymarket**: "What are the odds the NYC mayor is Joe?", "Bet $5 on the Eagles"
 
 You can also use the `/bankr-agent` command directly:
+
 ```
 /bankr-agent What's the current BTC price?
 ```
 
 ## Environment Variables
 
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `BANKR_API_KEY` | Yes | - | Your Bankr API key (prefix: `bk_`) |
-| `BANKR_API_URL` | No | `https://api.bankr.bot` | API base URL |
+| Variable        | Required | Default                 | Description                        |
+| --------------- | -------- | ----------------------- | ---------------------------------- |
+| `BANKR_API_KEY` | Yes      | -                       | Your Bankr API key (prefix: `bk_`) |
+| `BANKR_API_URL` | No       | `https://api.bankr.bot` | API base URL                       |
 
 ## Components
 
@@ -63,6 +65,7 @@ You can also use the `/bankr-agent` command directly:
 ## API Reference
 
 The plugin uses the Bankr Agent API:
+
 - `POST /agent/prompt` - Submit a prompt
 - `GET /agent/job/{jobId}` - Check job status
 - `POST /agent/job/{jobId}/cancel` - Cancel a job
