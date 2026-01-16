@@ -1,0 +1,9 @@
+{
+  "name": "bankr",
+  "version": "0.1.0",
+  "description": "Integration with Bankr API for crypto trading, market analysis, and Polymarket predictions",
+  "author": {
+    "name": "Bankr Team"
+  },
+  "keywords": ["crypto", "trading", "polymarket", "predictions", "defi", "blockchain"]
+}
