@@ -418,4 +418,4 @@ Expected response times by transaction type:
 
 ## Cost
 
-Each transaction request costs $0.10 USDC via x402 micropayments. This covers the SDK query; actual gas fees are paid separately from the executing wallet.
+Each transaction request costs $0.01 USDC via x402 micropayments. This covers the SDK query; actual gas fees are paid separately from the executing wallet.

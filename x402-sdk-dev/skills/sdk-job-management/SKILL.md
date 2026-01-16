@@ -399,7 +399,7 @@ try {
 
 ## Cost
 
-Each job costs $0.10 USDC via x402 micropayments, charged at job submission time regardless of final status. Cancelled and failed jobs still incur the charge.
+Each job costs $0.01 USDC via x402 micropayments, charged at job submission time regardless of final status. Cancelled and failed jobs still incur the charge.
 
 ## Best Practices
 
