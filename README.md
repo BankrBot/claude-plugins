@@ -6,7 +6,7 @@ Public Claude Code plugins for Web3 development with Bankr's multi-chain DeFi in
 
 ## Available Plugins
 
-### x402-sdk-dev
+### bankr-x402-sdk-dev
 **Integration with @bankr/sdk for Web3 Development**
 
 - Multi-chain token swaps (Base, Polygon, Ethereum, Solana)
@@ -20,7 +20,7 @@ Public Claude Code plugins for Web3 development with Bankr's multi-chain DeFi in
 
 ```bash
 claude "/plugins marketplace add BankrBot/claude-plugins"
-claude "/plugins install x402-sdk-dev@bankr-claude-plugins"
+claude "/plugins install bankr-x402-sdk-dev@bankr-claude-plugins"
 ```
 
 ## Requirements
