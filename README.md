@@ -39,11 +39,11 @@ claude plugins marketplace add BankrBot/claude-plugins
 Then install the plugin you want:
 
 ```bash
-# For bankr-agent (crypto trading & Polymarket)
+# For bankr-agent (Bankr agent)
 claude plugins install bankr-agent@bankr-claude-plugins
 
 # For x402-sdk-dev (Web3 development SDK)
-claude plugins install x402-sdk-dev@bankr-claude-plugins
+claude plugins install bankr-x402-sdk-dev@bankr-claude-plugins
 ```
 
 ## Requirements
