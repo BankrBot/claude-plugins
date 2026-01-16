@@ -17,6 +17,16 @@ _Maintained by the Bankr team._
 
 [View Plugin →](./bankr-agent/)
 
+### bankr-agent-dev
+
+**Developer Toolkit for Building on the Bankr Agent API**
+
+- Scaffold projects: Generate bots, web services, dashboards, CLI tools
+- API documentation: Endpoints, job patterns, TypeScript interfaces
+- Working examples: Ready-to-use client code with polling and cancellation
+
+[View Plugin →](./bankr-agent-dev/)
+
 ### bankr-x402-sdk-dev
 
 **Integration with @bankr/sdk for Web3 Development**
@@ -41,6 +51,9 @@ Then install the plugin you want:
 ```bash
 # For bankr-agent (Bankr agent)
 claude plugins install bankr-agent@bankr-claude-plugins
+
+# For bankr-agent-dev (Developer toolkit)
+claude plugins install bankr-agent-dev@bankr-claude-plugins
 
 # For x402-sdk-dev (Web3 development SDK)
 claude plugins install bankr-x402-sdk-dev@bankr-claude-plugins
