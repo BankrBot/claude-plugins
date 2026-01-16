@@ -121,6 +121,15 @@ If the user wants to cancel a running job:
 - For Polymarket: State odds clearly and any relevant context
 - Always report any errors clearly
 
+**Error Handling:**
+
+If you receive an authentication error (401 or "Invalid API key"), the error message will contain detailed setup instructions. Present these instructions clearly to the user - they explain how to:
+1. Create an API key at https://bankr.bot/api
+2. Set the BANKR_API_KEY environment variable
+3. Restart Claude Code
+
+Do NOT try to retry the request or use alternative methods when authentication fails. The user must fix their API key configuration first.
+
 **Important Notes:**
 
 - The Bankr API handles the actual execution - you just need to submit prompts and track status

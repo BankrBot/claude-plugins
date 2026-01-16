@@ -2,11 +2,7 @@
   "mcpServers": {
     "bankr-agent-api": {
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp-server/dist/index.js"],
-      "env": {
-        "BANKR_API_KEY": "${BANKR_API_KEY}",
-        "BANKR_API_URL": "${BANKR_API_URL}"
-      }
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp-server/dist/index.js"]
     }
   }
 }

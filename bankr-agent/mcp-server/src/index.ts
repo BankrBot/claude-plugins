@@ -11,8 +11,7 @@ import {
 const API_KEY = process.env.BANKR_API_KEY;
 const API_URL = process.env.BANKR_API_URL || "https://api.bankr.bot";
 
-const API_KEY_MISSING_ERROR = `BANKR_API_KEY environment variable is not set.
-
+const API_KEY_SETUP_INSTRUCTIONS = `
 To use the Bankr agent, you need to:
 
 1. Create an API key at https://bankr.bot/api (make sure "Agent API" is enabled)
@@ -23,8 +22,21 @@ To use the Bankr agent, you need to:
 3. Apply the changes by running:
    source ~/.bashrc   # or source ~/.zshrc
 
-Alternatively, export it directly in your current session:
+4. Restart Claude Code to pick up the new environment variable
+
+Alternatively, export it directly in your current session and restart Claude Code:
    export BANKR_API_KEY=bk_your_api_key_here`;
+
+const API_KEY_MISSING_ERROR = `BANKR_API_KEY environment variable is not set.
+${API_KEY_SETUP_INSTRUCTIONS}`;
+
+const API_KEY_INVALID_ERROR = `The Bankr API key is invalid or inactive.
+
+This can happen if:
+- The API key was revoked or expired
+- The "Agent API" feature is not enabled for this key
+- The API key was entered incorrectly
+${API_KEY_SETUP_INSTRUCTIONS}`;
 
 // Types
 interface PromptResponse {
@@ -97,6 +109,9 @@ async function submitPrompt(prompt: string): Promise<PromptResponse> {
   });
 
   if (!response.ok) {
+    if (response.status === 401) {
+      throw new Error(API_KEY_INVALID_ERROR);
+    }
     const errorText = await response.text();
     throw new Error(`API request failed: ${response.status} - ${errorText}`);
   }
@@ -117,6 +132,9 @@ async function getJobStatus(jobId: string): Promise<JobStatusResponse> {
   });
 
   if (!response.ok) {
+    if (response.status === 401) {
+      throw new Error(API_KEY_INVALID_ERROR);
+    }
     const errorText = await response.text();
     throw new Error(`API request failed: ${response.status} - ${errorText}`);
   }
@@ -138,6 +156,9 @@ async function cancelJob(jobId: string): Promise<JobStatusResponse> {
   });
 
   if (!response.ok) {
+    if (response.status === 401) {
+      throw new Error(API_KEY_INVALID_ERROR);
+    }
     const errorText = await response.text();
     throw new Error(`API request failed: ${response.status} - ${errorText}`);
   }
