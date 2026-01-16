@@ -1,4 +1,4 @@
-# Bankr Plugin for Claude Code
+# Bankr Agent Plugin for Claude Code
 
 Integration with the Bankr API for crypto trading, market analysis, and Polymarket predictions.
 
@@ -31,20 +31,20 @@ Integration with the Bankr API for crypto trading, market analysis, and Polymark
 3. Install the plugin in Claude Code:
    ```bash
    claude plugins marketplace add BankrBot/claude-plugins
-   claude plugins install bankr@bankr-claude-plugins
+   claude plugins install bankr-agent@bankr-claude-plugins
    ```
 
 ## Usage
 
-The bankr agent automatically triggers on:
+The bankr-agent automatically triggers on:
 
 - **Crypto queries**: "What's the price of ethereum?", "Buy $50 of BNKR on base"
 - **Trading operations**: "Swap 0.1 ETH for USDC", "What are the trends in DeFi?"
 - **Polymarket**: "What are the odds the NYC mayor is Joe?", "Bet $5 on the Eagles"
 
-You can also use the `/bankr` command directly:
+You can also use the `/bankr-agent` command directly:
 ```
-/bankr What's the current BTC price?
+/bankr-agent What's the current BTC price?
 ```
 
 ## Environment Variables
@@ -56,9 +56,9 @@ You can also use the `/bankr` command directly:
 
 ## Components
 
-- **Agent**: `bankr` - Handles crypto/trading/polymarket queries
-- **MCP Server**: `bankr-api` - Provides API tools
-- **Command**: `/bankr` - Direct invocation
+- **Agent**: `bankr-agent` - Handles crypto/trading/polymarket queries
+- **MCP Server**: `bankr-agent-api` - Provides API tools
+- **Command**: `/bankr-agent` - Direct invocation
 
 ## API Reference
 

@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "bankr-mcp-server",
+      "name": "bankr-agent-mcp-server",
       "dependencies": {
         "@modelcontextprotocol/sdk": "^1.0.0",
       },

@@ -174,7 +174,7 @@ function formatJobStatus(status: JobStatusResponse): string {
 // Create MCP Server
 const server = new Server(
   {
-    name: "bankr-api",
+    name: "bankr-agent-api",
     version: "0.1.0",
   },
   {
@@ -189,7 +189,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
       {
-        name: "bankr_submit_prompt",
+        name: "bankr_agent_submit_prompt",
         description:
           "Submit a prompt to the Bankr API for crypto trading, market analysis, or Polymarket predictions. Returns a job ID that can be used to check status.",
         inputSchema: {
@@ -205,7 +205,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         },
       },
       {
-        name: "bankr_get_job_status",
+        name: "bankr_agent_get_job_status",
         description:
           "Get the status of a Bankr job. Use this to poll for results after submitting a prompt. Status can be: pending, processing, completed, failed, or cancelled.",
         inputSchema: {
@@ -213,14 +213,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             job_id: {
               type: "string",
-              description: "The job ID returned from bankr_submit_prompt",
+              description: "The job ID returned from bankr_agent_submit_prompt",
             },
           },
           required: ["job_id"],
         },
       },
       {
-        name: "bankr_cancel_job",
+        name: "bankr_agent_cancel_job",
         description:
           "Cancel a running Bankr job. Use this if the user wants to stop a job that is still processing.",
         inputSchema: {
@@ -244,7 +244,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
   try {
     switch (name) {
-      case "bankr_submit_prompt": {
+      case "bankr_agent_submit_prompt": {
         const prompt = args?.prompt as string;
         if (!prompt) {
           throw new Error("prompt is required");
@@ -268,13 +268,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: "text",
-              text: `Prompt submitted successfully.\n\nJob ID: ${result.jobId}\nStatus: ${result.status || "pending"}\n\nUse bankr_get_job_status with this job ID to check for results. Poll every 1-2 seconds until status is "completed", "failed", or "cancelled".`,
+              text: `Prompt submitted successfully.\n\nJob ID: ${result.jobId}\nStatus: ${result.status || "pending"}\n\nUse bankr_agent_get_job_status with this job ID to check for results. Poll every 1-2 seconds until status is "completed", "failed", or "cancelled".`,
             },
           ],
         };
       }
 
-      case "bankr_get_job_status": {
+      case "bankr_agent_get_job_status": {
         const jobId = args?.job_id as string;
         if (!jobId) {
           throw new Error("job_id is required");
@@ -292,7 +292,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
-      case "bankr_cancel_job": {
+      case "bankr_agent_cancel_job": {
         const jobId = args?.job_id as string;
         if (!jobId) {
           throw new Error("job_id is required");
@@ -331,7 +331,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Bankr MCP server running on stdio");
+  console.error("Bankr Agent MCP server running on stdio");
 }
 
 main().catch((error) => {

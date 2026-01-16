@@ -6,7 +6,7 @@ Public Claude Code plugins for Web3 development with Bankr's multi-chain DeFi in
 
 ## Available Plugins
 
-### bankr
+### bankr-agent
 **Integration with Bankr API for Crypto Trading & Polymarket**
 
 - Crypto trading: Buy/sell tokens on Base, Ethereum, Solana, etc.
@@ -14,7 +14,7 @@ Public Claude Code plugins for Web3 development with Bankr's multi-chain DeFi in
 - Polymarket predictions: Check odds and place bets
 - Natural language interface via MCP server
 
-[View Plugin →](./bankr/)
+[View Plugin →](./bankr-agent/)
 
 ### x402-sdk-dev
 **Integration with @bankr/sdk for Web3 Development**
@@ -35,8 +35,8 @@ claude plugins marketplace add BankrBot/claude-plugins
 
 Then install the plugin you want:
 ```bash
-# For bankr (crypto trading & Polymarket)
-claude plugins install bankr@bankr-claude-plugins
+# For bankr-agent (crypto trading & Polymarket)
+claude plugins install bankr-agent@bankr-claude-plugins
 
 # For x402-sdk-dev (Web3 development SDK)
 claude plugins install x402-sdk-dev@bankr-claude-plugins

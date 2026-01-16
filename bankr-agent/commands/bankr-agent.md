@@ -5,9 +5,9 @@ argument-hint: [query]
 
 Send the following query to the Bankr API: $ARGUMENTS
 
-Use the bankr agent workflow:
-1. Submit the query using `bankr_submit_prompt`
-2. Poll for status using `bankr_get_job_status` every 1-2 seconds
+Use the bankr-agent workflow:
+1. Submit the query using `bankr_agent_submit_prompt`
+2. Poll for status using `bankr_agent_get_job_status` every 1-2 seconds
 3. Report status updates to the user as they come in
 4. When complete, share the final response
 

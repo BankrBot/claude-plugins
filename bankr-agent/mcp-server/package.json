@@ -1,7 +1,7 @@
 {
-  "name": "bankr-mcp-server",
+  "name": "bankr-agent-mcp-server",
   "version": "0.1.0",
-  "description": "MCP server for Bankr API integration",
+  "description": "MCP server for Bankr Agent API integration",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
