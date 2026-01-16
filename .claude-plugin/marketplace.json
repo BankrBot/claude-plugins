@@ -19,7 +19,6 @@
       "homepage": "https://bankr.bot"
     },
     {
-      "name": "x402-sdk-dev",
       "name": "bankr-x402-sdk-dev",
       "description": "Bankr SDK integration for AI-assisted Web3 development with multi-chain DeFi and x402 micropayments",
       "author": {
@@ -27,6 +26,17 @@
         "email": "support@bankr.bot"
       },
       "source": "./x402-sdk-dev",
+      "category": "development",
+      "homepage": "https://bankr.bot"
+    },
+    {
+      "name": "bankr-agent-dev",
+      "description": "Developer toolkit for building applications on top of the Bankr Agent API - scaffold projects, understand API patterns, and build integrations",
+      "author": {
+        "name": "Bankr",
+        "email": "support@bankr.bot"
+      },
+      "source": "./bankr-agent-dev",
       "category": "development",
       "homepage": "https://bankr.bot"
     }
