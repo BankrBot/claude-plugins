@@ -1,0 +1,40 @@
+{
+  "name": "@bankr/claude-plugins-marketplace",
+  "version": "1.0.0",
+  "description": "Public collection of reusable Claude Code plugins for Web3 development with Bankr",
+  "private": false,
+  "type": "module",
+  "keywords": [
+    "claude",
+    "claude-code",
+    "plugins",
+    "web3",
+    "defi",
+    "blockchain",
+    "ethereum",
+    "base",
+    "bankr",
+    "ai",
+    "development-tools"
+  ],
+  "author": "Bankr",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BankrBot/claude-plugins"
+  },
+  "homepage": "https://bankr.bot",
+  "bugs": {
+    "url": "https://discord.gg/bankr"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-plugins.js",
+    "test": "echo 'Running plugin tests...' && exit 0",
+    "lint": "echo 'Linting plugins...' && exit 0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

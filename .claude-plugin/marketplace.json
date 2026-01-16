@@ -1,0 +1,34 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "bankr-claude-plugins",
+  "description": "Public Claude Code plugins for Web3 development with Bankr's multi-chain DeFi infrastructure",
+  "owner": {
+    "name": "Bankr",
+    "email": "support@bankr.bot"
+  },
+  "plugins": [
+    {
+      "name": "bankr-agent",
+      "description": "Integration with Bankr API for crypto trading, market analysis, and Polymarket predictions",
+      "author": {
+        "name": "Bankr",
+        "email": "support@bankr.bot"
+      },
+      "source": "./bankr-agent",
+      "category": "tools",
+      "homepage": "https://bankr.bot"
+    },
+    {
+      "name": "x402-sdk-dev",
+      "name": "bankr-x402-sdk-dev",
+      "description": "Bankr SDK integration for AI-assisted Web3 development with multi-chain DeFi and x402 micropayments",
+      "author": {
+        "name": "Bankr",
+        "email": "support@bankr.bot"
+      },
+      "source": "./x402-sdk-dev",
+      "category": "development",
+      "homepage": "https://bankr.bot"
+    }
+  ]
+}
