@@ -11,6 +11,21 @@ import {
 const API_KEY = process.env.BANKR_API_KEY;
 const API_URL = process.env.BANKR_API_URL || "https://api.bankr.bot";
 
+const API_KEY_MISSING_ERROR = `BANKR_API_KEY environment variable is not set.
+
+To use the Bankr agent, you need to:
+
+1. Create an API key at https://bankr.bot/api (make sure "Agent API" is enabled)
+
+2. Add it to your shell configuration file (~/.bashrc or ~/.zshrc):
+   export BANKR_API_KEY=bk_your_api_key_here
+
+3. Apply the changes by running:
+   source ~/.bashrc   # or source ~/.zshrc
+
+Alternatively, export it directly in your current session:
+   export BANKR_API_KEY=bk_your_api_key_here`;
+
 // Types
 interface PromptResponse {
   success: boolean;
@@ -69,7 +84,7 @@ interface JobStatusResponse {
 // API Client Functions
 async function submitPrompt(prompt: string): Promise<PromptResponse> {
   if (!API_KEY) {
-    throw new Error("BANKR_API_KEY environment variable is not set");
+    throw new Error(API_KEY_MISSING_ERROR);
   }
 
   const response = await fetch(`${API_URL}/agent/prompt`, {
@@ -91,7 +106,7 @@ async function submitPrompt(prompt: string): Promise<PromptResponse> {
 
 async function getJobStatus(jobId: string): Promise<JobStatusResponse> {
   if (!API_KEY) {
-    throw new Error("BANKR_API_KEY environment variable is not set");
+    throw new Error(API_KEY_MISSING_ERROR);
   }
 
   const response = await fetch(`${API_URL}/agent/job/${jobId}`, {
@@ -111,7 +126,7 @@ async function getJobStatus(jobId: string): Promise<JobStatusResponse> {
 
 async function cancelJob(jobId: string): Promise<JobStatusResponse> {
   if (!API_KEY) {
-    throw new Error("BANKR_API_KEY environment variable is not set");
+    throw new Error(API_KEY_MISSING_ERROR);
   }
 
   const response = await fetch(`${API_URL}/agent/job/${jobId}/cancel`, {
