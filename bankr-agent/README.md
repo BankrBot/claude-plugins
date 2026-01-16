@@ -31,8 +31,8 @@ Integration with the Bankr API for crypto trading, market analysis, and Polymark
 
 3. Install the plugin in Claude Code:
    ```bash
-   claude plugins marketplace add BankrBot/claude-plugins
-   claude plugins install bankr-agent@bankr-claude-plugins
+   claude plugin marketplace add BankrBot/claude-plugins
+   claude plugin install bankr-agent@bankr-claude-plugins
    ```
 
 ## Usage

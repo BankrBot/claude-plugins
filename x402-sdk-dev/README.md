@@ -18,8 +18,8 @@ Claude Code integration for [@bankr/sdk](https://www.npmjs.com/package/@bankr/sd
 
 ```bash
 # 1. Install plugin
-claude "/plugins marketplace add BankrBot/claude-plugins"
-claude "/plugins install x402-sdk-dev@bankr-claude-plugins"
+claude plugin marketplace add BankrBot/claude-plugins
+claude plugin install bankr-x402-sdk-dev@bankr-claude-plugins
 
 # 2. Install SDK
 npm install @bankr/sdk
