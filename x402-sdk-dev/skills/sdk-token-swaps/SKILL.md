@@ -21,7 +21,11 @@ The Bankr SDK provides a natural language interface for token swaps across multi
 
 ## CRITICAL: ERC20 Approval Requirement
 
-For ERC20 token swaps (selling any token other than native ETH), approve the `allowanceTarget` before executing the swap transaction:
+For ERC20 token swaps (selling any token other than native ETH), you must approve the token before executing the swap. The SDK provides two approaches:
+
+### Recommended: Use `approvalTx` (Simplified)
+
+The SDK returns a pre-built approval transaction when needed:
 
 ```typescript
 import { BankrClient } from "@bankr/sdk";
@@ -37,19 +41,44 @@ const result = await client.promptAndWait({
 
 const swapTx = result.transactions?.find(tx => tx.type === "swap");
 
+if (swapTx?.metadata.approvalRequired) {
+  // Step 1: Execute the pre-built approval transaction
+  await wallet.sendTransaction(swapTx.metadata.approvalTx);
+
+  // Step 2: Execute the swap transaction
+  await wallet.sendTransaction(swapTx.metadata.transaction);
+} else {
+  // No approval needed (ETH swap or already approved)
+  await wallet.sendTransaction(swapTx.metadata.transaction);
+}
+```
+
+### Alternative: Manual Approval with `allowanceTarget`
+
+For more control, use the `allowanceTarget` to build your own approval:
+
+```typescript
+const swapTx = result.transactions?.find(tx => tx.type === "swap");
+
 if (swapTx?.metadata.allowanceTarget) {
-  // Step 1: Approve allowanceTarget to spend USDC
-  // This allows the 0x contract to transfer USDC on your behalf
+  // Build your own approval transaction
   await approveERC20(
-    usdcContractAddress,
+    inputTokenAddress,
     swapTx.metadata.allowanceTarget,
     swapAmount
   );
 
-  // Step 2: Execute the swap transaction
   await wallet.sendTransaction(swapTx.metadata.transaction);
 }
 ```
+
+### Approval Fields Reference
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `approvalRequired` | `boolean` | Whether approval is needed before swap |
+| `approvalTx` | `{ to: string, data: string }` | Pre-built approval transaction (ready to send) |
+| `allowanceTarget` | `string` | 0x AllowanceHolder address (for manual approval) |
 
 **Important References:**
 - [0x AllowanceHolder Documentation](https://0x.org/docs/introduction/0x-cheat-sheet#allowanceholder-recommended)
@@ -164,18 +193,27 @@ interface SwapTransaction {
     __ORIGINAL_TX_DATA__: {
       chain: string;                  // "base", "ethereum", etc.
       humanReadableMessage: string;   // "Swap 0.1 ETH for ~250 USDC"
+      inputTokenAddress: string;      // Input token contract address
       inputTokenAmount: string;       // "0.1"
       inputTokenTicker: string;       // "ETH"
+      outputTokenAddress: string;     // Output token contract address
       outputTokenTicker: string;      // "USDC"
       receiver: string;               // Receiving wallet address
     };
-    allowanceTarget?: string;         // Address to approve for ERC20 swaps
+    // Approval handling (for ERC20 swaps)
+    approvalRequired?: boolean;       // Whether approval needed before swap
+    approvalTx?: {                    // Pre-built approval transaction
+      to: string;
+      data: string;
+    };
+    allowanceTarget?: string;         // 0x AllowanceHolder (for manual approval)
+    // Swap transaction
     transaction: {
       chainId: number;                // Chain ID (8453 for Base)
       to: string;                     // Contract address
       data: string;                   // Encoded transaction data
       gas: string;                    // Gas limit
-      gasPrice: string;               // Gas price in wei
+      gasPrice?: string;              // Gas price in wei
       value: string;                  // ETH value to send (wei)
     };
   };
@@ -187,7 +225,7 @@ interface SwapTransaction {
 Complete example using viem to execute a swap:
 
 ```typescript
-import { createWalletClient, http, parseUnits } from "viem";
+import { createWalletClient, createPublicClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { base } from "viem/chains";
 
@@ -198,29 +236,31 @@ const walletClient = createWalletClient({
   chain: base,
   transport: http(),
 });
+const publicClient = createPublicClient({
+  chain: base,
+  transport: http(),
+});
 
 // Get swap transaction from SDK
 const result = await client.promptAndWait({
-  prompt: "Swap 0.1 ETH to USDC"
+  prompt: "Swap 100 USDC to WETH"
 });
 
 if (result.status !== "completed" || !result.transactions?.length) {
   throw new Error("Swap failed or no transactions returned");
 }
 
-const swapTx = result.transactions[0];
+const swapTx = result.transactions.find(tx => tx.type === "swap");
 const tx = swapTx.metadata.transaction;
 
-// Handle ERC20 approval if needed
-if (swapTx.metadata.allowanceTarget) {
-  // Approve the allowanceTarget to spend tokens
-  const approvalHash = await walletClient.writeContract({
-    address: inputTokenAddress,
-    abi: erc20Abi,
-    functionName: "approve",
-    args: [swapTx.metadata.allowanceTarget, parseUnits(amount, decimals)],
+// Handle ERC20 approval if needed (using pre-built approvalTx)
+if (swapTx.metadata.approvalRequired && swapTx.metadata.approvalTx) {
+  const approvalHash = await walletClient.sendTransaction({
+    to: swapTx.metadata.approvalTx.to as `0x${string}`,
+    data: swapTx.metadata.approvalTx.data as `0x${string}`,
   });
   await publicClient.waitForTransactionReceipt({ hash: approvalHash });
+  console.log(`Approval confirmed: ${approvalHash}`);
 }
 
 // Execute swap
@@ -247,28 +287,24 @@ const wallet = new ethers.Wallet(process.env.WALLET_PK, provider);
 
 // Get swap transaction
 const result = await client.promptAndWait({
-  prompt: "Swap 0.1 ETH to USDC"
+  prompt: "Swap 100 USDC to WETH"
 });
 
-const swapTx = result.transactions?.[0];
+const swapTx = result.transactions?.find(tx => tx.type === "swap");
 const tx = swapTx?.metadata.transaction;
 
 if (!tx) {
   throw new Error("No transaction data");
 }
 
-// Handle ERC20 approval if needed
-if (swapTx.metadata.allowanceTarget) {
-  const tokenContract = new ethers.Contract(
-    inputTokenAddress,
-    ["function approve(address spender, uint256 amount) returns (bool)"],
-    wallet
-  );
-  const approveTx = await tokenContract.approve(
-    swapTx.metadata.allowanceTarget,
-    ethers.parseUnits(amount, decimals)
-  );
+// Handle ERC20 approval if needed (using pre-built approvalTx)
+if (swapTx.metadata.approvalRequired && swapTx.metadata.approvalTx) {
+  const approveTx = await wallet.sendTransaction({
+    to: swapTx.metadata.approvalTx.to,
+    data: swapTx.metadata.approvalTx.data,
+  });
   await approveTx.wait();
+  console.log(`Approval confirmed: ${approveTx.hash}`);
 }
 
 // Execute swap
@@ -377,7 +413,7 @@ For reference when building approval transactions:
 
 ## Cost
 
-Each swap request costs $0.10 USDC via x402 micropayments. This covers the SDK query; gas fees for the actual swap transaction are paid separately from the executing wallet.
+Each swap request costs $0.01 USDC via x402 micropayments. This covers the SDK query; gas fees for the actual swap transaction are paid separately from the executing wallet.
 
 ## Response Times
 

@@ -18,6 +18,29 @@ The BankrClient is the main entry point for interacting with the Bankr SDK. Prop
 - Two-wallet separation for enhanced security
 - Environment-based configuration
 
+## SDK Methods Summary
+
+The BankrClient provides 6 core methods:
+
+| Method | Description | Use Case |
+|--------|-------------|----------|
+| `promptAndWait()` | Submit prompt and wait for result | **Recommended** for most use cases |
+| `prompt()` | Submit prompt, return immediately | Background processing |
+| `pollJob()` | Poll until job completes | Manual job tracking |
+| `getJobStatus()` | Check job status once | Custom polling logic |
+| `cancelJob()` | Cancel a pending/processing job | Stop unwanted jobs |
+| `getWalletAddress()` | Get derived wallet address | Verify payment wallet |
+
+```typescript
+// Most common pattern
+const result = await client.promptAndWait({
+  prompt: "Swap 0.1 ETH to USDC",
+});
+
+// Get wallet address (no API call)
+const address = client.getWalletAddress();
+```
+
 ## Two-Wallet System
 
 The Bankr SDK uses two distinct wallet concepts:
@@ -25,7 +48,7 @@ The Bankr SDK uses two distinct wallet concepts:
 ### Payment Wallet (`privateKey`)
 
 The payment wallet is **required** and used for:
-- Signing x402 micropayments ($0.10 USDC per request)
+- Signing x402 micropayments ($0.01 USDC per request)
 - Authenticating with the Bankr API
 - Must have USDC balance on Base chain
 
@@ -77,7 +100,7 @@ const client = new BankrClient({
   walletAddress: process.env.BANKR_WALLET_ADDRESS,
 
   // Optional: API base URL (default: production)
-  baseUrl: "https://api-staging.bankr.bot",
+  baseUrl: "https://api.bankr.bot",
 
   // Optional: Request timeout in milliseconds (default: 600000 = 10 min)
   timeout: 600000,
@@ -97,7 +120,7 @@ const client = new BankrClient({
   walletAddress: process.env.RECEIVING_WALLET,
 });
 
-// Payment wallet (hot): pays $0.10 per request
+// Payment wallet (hot): pays $0.01 per request
 // Receiving wallet (cold): receives swapped USDC, purchased NFTs, etc.
 const result = await client.promptAndWait({
   prompt: "Swap 0.1 ETH to USDC",
@@ -176,7 +199,7 @@ interface BankrClientConfig {
 
   /**
    * API base URL.
-   * Default: "https://api-staging.bankr.bot"
+   * Default: "https://api.bankr.bot"
    * Optional field.
    */
   baseUrl?: string;
@@ -188,6 +211,48 @@ interface BankrClientConfig {
    */
   timeout?: number;
 }
+```
+
+## Prompt Options
+
+Options available when making requests:
+
+```typescript
+interface PromptOptions {
+  /**
+   * Natural language prompt for the AI.
+   * Required field.
+   */
+  prompt: string;
+
+  /**
+   * Override the context wallet for this request only.
+   * Optional field.
+   */
+  walletAddress?: string;
+
+  /**
+   * Convert transaction data to XMTP-compatible format.
+   * Useful for messaging-based transaction flows.
+   * Default: false
+   * Optional field.
+   */
+  xmtp?: boolean;
+}
+```
+
+### XMTP Integration
+
+Enable XMTP format for transaction data when building messaging-based flows:
+
+```typescript
+const result = await client.promptAndWait({
+  prompt: "Swap 0.1 ETH to USDC",
+  xmtp: true, // Convert transaction to XMTP format
+});
+
+// Transaction data formatted for XMTP messaging
+console.log(result.transactions);
 ```
 
 ## Environment Setup
@@ -209,7 +274,7 @@ BANKR_PRIVATE_KEY=0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890ab
 BANKR_WALLET_ADDRESS=0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb0
 
 # API endpoint (defaults to production)
-BANKR_API_URL=https://api-staging.bankr.bot
+BANKR_API_URL=https://api.bankr.bot
 ```
 
 ### .env File Example
@@ -338,9 +403,9 @@ const client = new BankrClient({
 Keep only small amounts in the payment wallet:
 
 ```
-Recommended: $5-10 USDC on Base
-Purpose: Covers 50-100 API requests
-Refill: When balance drops below $2
+Recommended: $1-2 USDC on Base
+Purpose: Covers 100-200 API requests
+Refill: When balance drops below $0.20
 ```
 
 ### Separate Wallet Responsibilities
