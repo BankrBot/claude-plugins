@@ -1,8 +1,8 @@
 {
   "plugins": [
     {
-      "id": "bankr",
-      "name": "Bankr",
+      "id": "bankr-agent",
+      "name": "Bankr Agent",
       "description": "Integration with Bankr API for crypto trading, market analysis, and Polymarket predictions",
       "version": "0.1.0",
       "author": "Bankr Team",
