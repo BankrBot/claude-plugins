@@ -62,7 +62,7 @@ You can also use the `/bankr-agent` command directly:
 
 ## API Reference
 
-The plugin uses the Bankr Wallet API:
-- `POST /wallet/prompt` - Submit a prompt
-- `GET /wallet/job/{jobId}` - Check job status
-- `POST /wallet/job/{jobId}/cancel` - Cancel a job
+The plugin uses the Bankr Agent API:
+- `POST /agent/prompt` - Submit a prompt
+- `GET /agent/job/{jobId}` - Check job status
+- `POST /agent/job/{jobId}/cancel` - Cancel a job

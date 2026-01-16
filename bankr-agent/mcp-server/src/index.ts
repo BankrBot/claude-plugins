@@ -72,7 +72,7 @@ async function submitPrompt(prompt: string): Promise<PromptResponse> {
     throw new Error("BANKR_API_KEY environment variable is not set");
   }
 
-  const response = await fetch(`${API_URL}/wallet/prompt`, {
+  const response = await fetch(`${API_URL}/agent/prompt`, {
     method: "POST",
     headers: {
       "x-api-key": API_KEY,
@@ -94,7 +94,7 @@ async function getJobStatus(jobId: string): Promise<JobStatusResponse> {
     throw new Error("BANKR_API_KEY environment variable is not set");
   }
 
-  const response = await fetch(`${API_URL}/wallet/job/${jobId}`, {
+  const response = await fetch(`${API_URL}/agent/job/${jobId}`, {
     method: "GET",
     headers: {
       "x-api-key": API_KEY,
@@ -114,7 +114,7 @@ async function cancelJob(jobId: string): Promise<JobStatusResponse> {
     throw new Error("BANKR_API_KEY environment variable is not set");
   }
 
-  const response = await fetch(`${API_URL}/wallet/job/${jobId}/cancel`, {
+  const response = await fetch(`${API_URL}/agent/job/${jobId}/cancel`, {
     method: "POST",
     headers: {
       "x-api-key": API_KEY,
@@ -268,7 +268,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: "text",
-              text: `Prompt submitted successfully.\n\nJob ID: ${result.jobId}\nStatus: ${result.status || "pending"}\n\nUse bankr_agent_get_job_status with this job ID to check for results. Poll every 1-2 seconds until status is "completed", "failed", or "cancelled".`,
+              text: `Prompt submitted successfully.\n\nJob ID: ${result.jobId}\nStatus: ${result.status || "pending"}\n\nUse bankr_agent_get_job_status with this job ID to check for results. Poll every 2 seconds until status is "completed", "failed", or "cancelled".`,
             },
           ],
         };
