@@ -4,11 +4,15 @@ Claude Code integration for [@bankr/sdk](https://www.npmjs.com/package/@bankr/sd
 
 ## Features
 
-- **Multi-Chain**: Base, Polygon, Ethereum, Solana
-- **Token Swaps**: AI-powered with 0x routing
-- **x402 Payments**: $0.10 USDC per request (Base network)
-- **Job Management**: Async submission, polling, cancellation
-- **12 Transaction Types**: Swaps, transfers, approvals, NFT ops, DeFi
+- **Multi-Chain**: Base, Polygon, Ethereum (EVM chains)
+- **Token Trading**: Swaps, buys, and cross-chain bridges with 0x routing
+- **Leveraged Trading**: Avantis commodities, forex, and crypto with up to 150x leverage
+- **NFT Operations**: Buy, discover listings, view holdings
+- **Market Data**: Prices, analysis, trending tokens, portfolio balances
+- **x402 Payments**: $0.01 USDC per request (Base network)
+- **13 Transaction Types**: Swaps, transfers, approvals, NFT ops, bridges, staking
+
+**Note:** Solana and Polymarket are not supported via the SDK (wallet mode limitations).
 
 ## Quick Start
 
@@ -21,15 +25,16 @@ claude "/plugins install x402-sdk-dev@bankr-claude-plugins"
 npm install @bankr/sdk
 
 # 3. Configure environment
-export BANKR_PRIVATE_KEY=0x...  # Required: pays $0.10 USDC per request (needs USDC on Base)
+export BANKR_PRIVATE_KEY=0x...  # Required: pays $0.01 USDC per request (needs USDC on Base)
 export BANKR_WALLET_ADDRESS=0x... # Optional: receives swapped tokens
-export BANKR_API_URL=https://api-staging.bankr.bot  # Optional
+export BANKR_API_URL=https://api.bankr.bot  # Optional
 ```
 
 ## Skills
 
 | Skill | Description |
 |-------|-------------|
+| `sdk-capabilities` | Full guide to all supported operations and prompts |
 | `sdk-wallet-operations` | Client init, wallet config, address derivation |
 | `sdk-token-swaps` | Multi-chain swaps with 0x routing |
 | `sdk-balance-queries` | Token balances, portfolio values |
@@ -38,7 +43,20 @@ export BANKR_API_URL=https://api-staging.bankr.bot  # Optional
 
 ## Agent
 
-**web3-dev-assistant** - Guided Web3 development with SDK integration, swap building, and best practices.
+**sdk-assistant** - Bankr SDK development assistant. Routes to appropriate skills based on user needs.
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `/bankr-x402-sdk-dev:init-sdk [path]` | Initialize SDK in your project - installs package, creates client file, sets up .env |
+
+**Quick setup:**
+```bash
+/bankr-x402-sdk-dev:init-sdk
+```
+
+This auto-detects your package manager and TypeScript setup, then creates a ready-to-use `bankr-client.ts` file.
 
 ## Basic Usage
 
@@ -86,7 +104,7 @@ See [0x AllowanceHolder docs](https://0x.org/docs/introduction/0x-cheat-sheet#al
 
 ## Two-Wallet System
 
-- **Payment Wallet** (`privateKey`): Pays $0.10 USDC per request. Must have USDC on Base.
+- **Payment Wallet** (`privateKey`): Pays $0.01 USDC per request. Must have USDC on Base.
 - **Context Wallet** (`walletAddress`): Receives swapped tokens. Can be different from payment wallet.
 
 ## Troubleshooting

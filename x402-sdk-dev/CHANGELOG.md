@@ -1,12 +1,33 @@
 # Changelog
 
+## v1.1.0 - SDK Capabilities & Agent Refactor
+
+### Added
+- **sdk-capabilities skill**: Complete guide to all SDK operations
+  - 22 supported operations with example prompts
+  - 8 blocked operations documented
+  - Transaction types reference
+- **init-sdk command**: Project setup automation
+
+### Changed
+- Renamed agent: `web3-dev-assistant` → `sdk-assistant`
+  - Now a lean skill router with proper triggers
+  - Added tools: Read, Glob, Grep, Bash
+- Removed internal tool names from all skills (public-facing docs)
+- Removed top-level `examples/` directory (not standard plugin structure)
+
+### Fixed
+- Added missing `version` field to plugin.json
+
+---
+
 ## v1.0.0 - SDK Alignment
 
 Plugin updated to match actual @bankr/sdk implementation.
 
 ### Key Details
 
-**API Endpoint**: `https://api-staging.bankr.bot` (default)
+**API Endpoint**: `https://api.bankr.bot` (default)
 
 **Payment Network**: Base only (for x402 USDC payments)
 - Transactions can be on any chain (Base, Ethereum, Polygon, Solana)

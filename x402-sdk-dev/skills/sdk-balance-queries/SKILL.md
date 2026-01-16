@@ -274,7 +274,7 @@ console.log(result.response);
 
 ## Cost
 
-Each balance query costs $0.10 USDC via x402 micropayments, regardless of complexity. The payment wallet must have sufficient USDC on Base to cover query costs.
+Each balance query costs $0.01 USDC via x402 micropayments, regardless of complexity. The payment wallet must have sufficient USDC on Base to cover query costs.
 
 ## Common Prompt Patterns
 
