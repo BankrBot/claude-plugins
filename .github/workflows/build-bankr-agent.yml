@@ -1,0 +1,35 @@
+name: Build Bankr Agent
+
+on:
+  push:
+    paths:
+      - 'bankr-agent/mcp-server/**'
+      - '.github/workflows/build-bankr-agent.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      
+      - name: Install dependencies
+        working-directory: bankr-agent/mcp-server
+        run: bun install
+      
+      - name: Build
+        working-directory: bankr-agent/mcp-server
+        run: bun run build
+      
+      - name: Commit dist
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add bankr-agent/mcp-server/dist/
+          git diff --staged --quiet || git commit -m "chore: build bankr-agent mcp-server dist"
+          git push

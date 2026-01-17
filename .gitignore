@@ -14,6 +14,7 @@ coverage/
 
 # Build outputs
 dist/
+!bankr-agent/mcp-server/dist/
 build/
 *.tsbuildinfo
 

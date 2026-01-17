@@ -1,5 +1,4 @@
 node_modules/
-dist/
 .env
 *.local.md
 .DS_Store
