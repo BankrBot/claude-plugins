@@ -1,5 +1,4 @@
 ---
-name: init-sdk
 description: Initialize Bankr SDK in current project - installs package, creates client file, sets up environment
 allowed-tools:
   - Read

@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Token Trading
-description: Token swap and trading capability via the Bankr API. Covers same-chain swaps, cross-chain bridges, ETH/WETH conversions, and multiple amount formats. Triggered by "trading prompts", "swap patterns", "buy/sell tokens", "bridge tokens".
+description: This skill should be used when building trading bots, implementing swap functionality, or adding cross-chain bridge support. Covers same-chain swaps, cross-chain bridges, ETH/WETH conversions, and amount formats.
 version: 1.0.0
 ---
 

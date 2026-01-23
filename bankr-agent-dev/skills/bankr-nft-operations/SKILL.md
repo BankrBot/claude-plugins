@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - NFT Operations
-description: NFT marketplace capability via the Bankr API (OpenSea integration). Browse collections, check floor prices, and purchase NFTs. Triggered by "NFT prompts", "floor price", "buy NFT", "OpenSea patterns".
+description: This skill should be used when building NFT marketplace integrations, implementing collection browsing, or adding floor price tracking. Covers OpenSea integration, floor prices, and NFT purchases.
 version: 1.0.0
 ---
 

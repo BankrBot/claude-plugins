@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Market Research
-description: Market data capability via the Bankr API. Query prices, market caps, technical analysis, sentiment, and trending tokens. Triggered by "market prompts", "price queries", "technical analysis", "sentiment checking".
+description: This skill should be used when building market data displays, implementing price feeds, or adding technical analysis. Covers prices, market caps, technical analysis, sentiment, and trending tokens.
 version: 1.0.0
 ---
 

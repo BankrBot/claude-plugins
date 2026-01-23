@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Transfers
-description: Token transfer capability via the Bankr API. Supports wallet addresses, ENS names, and social handles with automatic resolution. Triggered by "transfer prompts", "send tokens", "payment patterns", "ENS resolution".
+description: This skill should be used when building payment systems, implementing token transfers, or adding ENS/social handle resolution. Supports wallet addresses, ENS names, and social handles.
 version: 1.0.0
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Polymarket
-description: Prediction market capability via the Bankr API. Search markets, check odds, place bets, and manage positions on Polymarket. Triggered by "Polymarket prompts", "prediction market", "betting patterns", "odds checking".
+description: This skill should be used when building prediction market integrations, implementing betting functionality, or querying Polymarket odds. Covers market search, odds checking, and position management.
 version: 1.0.0
 ---
 

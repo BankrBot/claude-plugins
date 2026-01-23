@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Token Deployment
-description: Token deployment capability via the Bankr API (Clanker integration). Deploy ERC20 tokens, update metadata, and claim trading fees. Triggered by "deployment prompts", "Clanker patterns", "token creation", "fee claiming".
+description: This skill should be used when building token launch tools, implementing Clanker integration, or adding fee claiming functionality. Covers ERC20 deployment, metadata updates, and trading fees.
 version: 1.0.0
 ---
 

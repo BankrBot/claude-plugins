@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Leverage Trading
-description: Perpetual trading capability via the Bankr API (Avantis integration). Open/close leveraged positions with stop loss and take profit. Triggered by "leverage prompts", "perpetual trading", "long/short positions", "Avantis patterns".
+description: This skill should be used when building perpetual trading bots, implementing leverage functionality, or adding position management. Covers Avantis integration, long/short positions, and risk controls.
 version: 1.0.0
 ---
 

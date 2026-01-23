@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Automation
-description: Automated order capability via the Bankr API. Create limit orders, stop losses, DCA schedules, and TWAP execution. Triggered by "automation prompts", "limit orders", "DCA patterns", "scheduled orders".
+description: This skill should be used when building automated trading systems, implementing limit orders, or adding DCA/TWAP functionality. Covers limit orders, stop losses, DCA schedules, and TWAP execution.
 version: 1.0.0
 ---
 

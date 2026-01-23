@@ -1,6 +1,6 @@
 ---
 name: Bankr Dev - Portfolio
-description: Portfolio query capability via the Bankr API. Check balances, holdings, and valuations across all chains. Triggered by "portfolio prompts", "balance checking", "holdings query", "multi-chain balances".
+description: This skill should be used when building portfolio dashboards, implementing balance checking, or adding multi-chain holdings views. Covers balances, holdings, and valuations across chains.
 version: 1.0.0
 ---
 
