@@ -1,7 +1,7 @@
 ---
 name: Bankr x402 SDK - Capabilities
 description: This skill should be used when the user asks "what can the SDK do", "what prompts does Bankr support", "SDK features", "supported operations", "what can I build with Bankr", "Bankr SDK capabilities", "what chains are supported", "what tokens can I trade", "SDK supported commands", or wants to understand the full range of operations available through the Bankr SDK.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # SDK Capabilities

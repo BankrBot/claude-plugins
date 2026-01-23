@@ -1,7 +1,7 @@
 ---
 name: Bankr x402 SDK - Wallet Operations
 description: This skill should be used when the user asks to "set up the SDK", "initialize BankrClient", "configure wallet", "set up payment wallet", "connect wallet to Bankr", "get wallet address", "set up environment variables", "configure private key", "two wallet setup", "separate payment and trading wallets", or needs help with SDK client initialization, two-wallet configuration, wallet address derivation, environment setup, or BankrClient options.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # SDK Wallet Operations

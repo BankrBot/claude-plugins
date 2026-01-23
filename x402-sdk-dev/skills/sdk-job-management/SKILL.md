@@ -1,7 +1,7 @@
 ---
 name: Bankr x402 SDK - Job Management
 description: This skill should be used when the user asks about "job status", "check if request completed", "cancel request", "why is my request taking so long", "poll for result", "batch requests", "retry failed request", "request timeout", "async operations", "job lifecycle", "manual polling", or needs advanced control over SDK async operations, manual job polling, batch processing, retry logic, or job cancellation.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # SDK Job Management
