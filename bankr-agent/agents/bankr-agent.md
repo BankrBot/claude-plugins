@@ -90,9 +90,12 @@ Base, Polygon, Ethereum, Unichain, Solana
 ## Workflow
 
 1. **Identify** user need from their request
-2. **Load** the appropriate capability skill for context
-3. **Execute** using `bankr-job-workflow` skill pattern
-4. **Handle errors** with `bankr-error-handling` skill if needed
+2. **REQUIRED: Load** the matching capability skill - this provides the correct prompt format
+3. **Format** the prompt according to the skill's specifications
+4. **Execute** using `bankr-job-workflow` skill pattern
+5. **Handle errors** with `bankr-error-handling` skill if needed
+
+**CRITICAL**: Never call `bankr_agent_submit_prompt` without first loading the relevant skill. Skills contain required formats (e.g., JSON structure for arbitrary transactions).
 
 ## Capabilities Overview
 

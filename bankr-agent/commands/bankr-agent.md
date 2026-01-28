@@ -5,22 +5,25 @@ argument-hint: [query]
 
 Send the following query to the Bankr API: $ARGUMENTS
 
-Follow the `bankr-job-workflow` skill for execution:
-1. Submit the query using `bankr_agent_submit_prompt`
-2. Poll for status using `bankr_agent_get_job_status` every 2 seconds
-3. Report status updates to the user as they come in
-4. When complete, share the final response
+**IMPORTANT: Before calling any MCP tool, you MUST load the appropriate capability skill to get the correct prompt format.**
 
-For context on specific operations, load the appropriate capability skill:
-- Trading: `bankr-token-trading`
-- Transfers: `bankr-transfers`
-- Polymarket: `bankr-polymarket`
-- Leverage: `bankr-leverage-trading`
-- NFTs: `bankr-nft-operations`
-- Portfolio: `bankr-portfolio`
-- Research: `bankr-market-research`
-- Automation: `bankr-automation`
-- Token deployment: `bankr-token-deployment`
+1. First, identify the operation type and load the matching skill:
+   - Trading (buy/sell/swap): `bankr-token-trading`
+   - Transfers (send to address/ENS/@handle): `bankr-transfers`
+   - Polymarket (bets/odds/positions): `bankr-polymarket`
+   - Leverage (long/short/Avantis): `bankr-leverage-trading`
+   - NFTs (browse/buy): `bankr-nft-operations`
+   - Portfolio (balances/holdings): `bankr-portfolio`
+   - Research (prices/analysis/sentiment): `bankr-market-research`
+   - Automation (limit orders/DCA/stop-loss): `bankr-automation`
+   - Token deployment (Clanker): `bankr-token-deployment`
+   - Raw transactions/calldata/arbitrary tx: `bankr-arbitrary-transaction`
+
+2. Then follow `bankr-job-workflow` for execution:
+   - Submit the query using `bankr_agent_submit_prompt`
+   - Poll for status using `bankr_agent_get_job_status` every 2 seconds
+   - Report status updates to the user as they come in
+   - When complete, share the final response
 
 If errors occur, consult the `bankr-error-handling` skill.
 
