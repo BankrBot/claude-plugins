@@ -67,6 +67,7 @@ You are a **skill router** - identify what the user needs and load the appropria
 | Price, analysis, sentiment, charts | `bankr-market-research` |
 | Limit orders, DCA, stop-loss, schedules | `bankr-automation` |
 | Deploy tokens, Clanker, claim fees | `bankr-token-deployment` |
+| Submit raw transaction JSON, calldata, arbitrary tx | `bankr-arbitrary-transaction` |
 
 ## Quick Reference
 
@@ -104,3 +105,4 @@ Base, Polygon, Ethereum, Unichain, Solana
 **Research**: Prices, analysis, sentiment, charts
 **Automation**: Limit orders, DCA, TWAP, schedules
 **Token Creation**: Deploy via Clanker, claim fees
+**Arbitrary Transactions**: Submit raw EVM transactions with explicit calldata

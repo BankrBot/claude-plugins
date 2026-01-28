@@ -1,6 +1,6 @@
 {
   "name": "bankr-agent-dev",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Developer toolkit for building applications on top of the Bankr Agent API - scaffold projects, understand API patterns, and build integrations",
   "author": {
     "name": "Bankr Team"
