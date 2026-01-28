@@ -33,6 +33,7 @@ Submit raw EVM transactions with explicit calldata to any supported chain.
 | Ethereum | 1 |
 | Polygon | 137 |
 | Base | 8453 |
+| Unichain | 130 |
 
 ## Prompt Examples
 
@@ -82,7 +83,7 @@ Submit transaction with value:
 
 | Issue | Resolution |
 |-------|------------|
-| Unsupported chain | Use chainId 1, 137, or 8453 |
+| Unsupported chain | Use chainId 1, 137, 8453, or 130 |
 | Invalid address | Ensure 0x + 40 hex chars |
 | Invalid calldata | Ensure proper hex encoding with 0x prefix |
 | Transaction reverted | Check calldata encoding and contract state |

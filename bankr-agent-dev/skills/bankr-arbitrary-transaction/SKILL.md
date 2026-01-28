@@ -41,6 +41,7 @@ Submit raw EVM transactions with explicit calldata via the Bankr API.
 | Ethereum | 1 |
 | Polygon | 137 |
 | Base | 8453 |
+| Unichain | 130 |
 
 ## Usage
 
@@ -78,7 +79,7 @@ async function submitArbitraryTx(tx: ArbitraryTx): Promise<void> {
   if (!tx.data.startsWith("0x")) {
     throw new Error("Calldata must start with 0x");
   }
-  if (![1, 137, 8453].includes(tx.chainId)) {
+  if (![1, 137, 8453, 130].includes(tx.chainId)) {
     throw new Error("Unsupported chain");
   }
 
