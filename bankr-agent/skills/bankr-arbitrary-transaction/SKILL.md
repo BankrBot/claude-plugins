@@ -52,8 +52,8 @@ Submit this transaction:
 ```
 Execute this calldata on Base:
 {
-  "to": "0xContractAddress...",
-  "data": "0xFunctionSelector...",
+  "to": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+  "data": "0x095ea7b30000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488dffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
   "value": "0",
   "chainId": 8453
 }
