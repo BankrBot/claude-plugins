@@ -5,7 +5,7 @@ argument-hint: [query]
 
 Send the following query to the Bankr API: $ARGUMENTS
 
-**IMPORTANT: Before calling any MCP tool, you MUST load the appropriate capability skill to get the correct prompt format.**
+**IMPORTANT: You MUST load the skills to get the API commands and correct prompt format.**
 
 1. First, identify the operation type and load the matching skill:
    - Trading (buy/sell/swap): `bankr-token-trading`
@@ -19,9 +19,9 @@ Send the following query to the Bankr API: $ARGUMENTS
    - Token deployment (Clanker): `bankr-token-deployment`
    - Raw transactions/calldata/arbitrary tx: `bankr-arbitrary-transaction`
 
-2. Then follow `bankr-job-workflow` for execution:
-   - Submit the query using `bankr_agent_submit_prompt`
-   - Poll for status using `bankr_agent_get_job_status` every 2 seconds
+2. **REQUIRED**: Load `bankr-job-workflow` skill - this contains the curl commands to call the API:
+   - Submit the query using the curl POST command
+   - Poll for status using the curl GET command every 2 seconds
    - Report status updates to the user as they come in
    - When complete, share the final response
 

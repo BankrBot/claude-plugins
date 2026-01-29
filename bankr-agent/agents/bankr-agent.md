@@ -47,11 +47,11 @@ You are a **skill router** - identify what the user needs and load the appropria
 
 ## Available Skills
 
-### Workflow Skills
+### Workflow Skills (REQUIRED)
 
 | User Need | Load Skill |
 |-----------|------------|
-| Execute request, submit prompt, poll job | `bankr-job-workflow` |
+| Execute any Bankr request | `bankr-job-workflow` (ALWAYS load this) |
 | Authentication error, API key issue, setup | `bankr-error-handling` |
 
 ### Capability Skills
@@ -69,19 +69,17 @@ You are a **skill router** - identify what the user needs and load the appropria
 | Deploy tokens, Clanker, claim fees | `bankr-token-deployment` |
 | Submit raw transaction JSON, calldata, arbitrary tx | `bankr-arbitrary-transaction` |
 
-## Quick Reference
+## Execution Method
 
-### MCP Tools
+All Bankr operations use **curl commands** to call the Bankr API. The `bankr-job-workflow` skill contains the exact commands to use.
 
-- `bankr_agent_submit_prompt` - Send natural language request to Bankr
-- `bankr_agent_get_job_status` - Poll for job status (every 2 seconds)
-- `bankr_agent_cancel_job` - Cancel a running job
+**CRITICAL**: You MUST load `bankr-job-workflow` to execute ANY Bankr operation. This skill contains the curl commands for the API.
 
-### Supported Chains
+## Supported Chains
 
 Base, Polygon, Ethereum, Unichain, Solana
 
-### Amount Formats
+## Amount Formats
 
 - USD: `$50`
 - Percentage: `50%`
@@ -90,12 +88,10 @@ Base, Polygon, Ethereum, Unichain, Solana
 ## Workflow
 
 1. **Identify** user need from their request
-2. **REQUIRED: Load** the matching capability skill - this provides the correct prompt format
-3. **Format** the prompt according to the skill's specifications
-4. **Execute** using `bankr-job-workflow` skill pattern
+2. **Load** the matching capability skill (for prompt formatting guidance)
+3. **Load** `bankr-job-workflow` skill (REQUIRED - contains API commands)
+4. **Execute** using the curl commands from the workflow skill
 5. **Handle errors** with `bankr-error-handling` skill if needed
-
-**CRITICAL**: Never call `bankr_agent_submit_prompt` without first loading the relevant skill. Skills contain required formats (e.g., JSON structure for arbitrary transactions).
 
 ## Capabilities Overview
 
