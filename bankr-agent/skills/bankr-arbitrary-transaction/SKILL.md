@@ -1,12 +1,16 @@
 ---
 name: Bankr Agent - Arbitrary Transactions
 description: This skill should be used when the user wants to "submit a transaction", "execute calldata", "send raw transaction", "submit transaction JSON", or provides a JSON object with to/data/value/chainId fields. Handles raw EVM transaction submission.
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Arbitrary Transaction Submission
 
 Submit raw EVM transactions with explicit calldata to any supported chain.
+
+## Execution
+
+**After loading this skill, load `bankr-job-workflow` to execute the request via curl commands.**
 
 ## JSON Format
 

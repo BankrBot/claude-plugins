@@ -1,12 +1,16 @@
 ---
 name: Bankr Agent - Token Deployment
 description: This skill should be used when the user asks to "deploy token", "create token", "launch token", "Clanker", "claim fees", "token metadata", "update token", "mint new token", or any token deployment operation. Provides guidance on deploying ERC20 tokens via Clanker.
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Bankr Token Deployment
 
 Deploy and manage ERC20 tokens using Clanker.
+
+## Execution
+
+**After loading this skill, load `bankr-job-workflow` to execute the request via curl commands.**
 
 ## Supported Chains
 
