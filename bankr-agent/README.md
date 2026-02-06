@@ -76,6 +76,51 @@ You can also use the `/bankr-agent` command directly:
 
 The plugin uses the Bankr Agent API:
 
-- `POST /agent/prompt` - Submit a prompt
+### Asynchronous Endpoints (Job-based)
+- `POST /agent/prompt` - Submit a natural language prompt
 - `GET /agent/job/{jobId}` - Check job status
 - `POST /agent/job/{jobId}/cancel` - Cancel a job
+
+### Synchronous Endpoints
+- `POST /agent/sign` - Sign messages, typed data, or transactions
+- `POST /agent/submit` - Submit raw transactions to the blockchain
+
+### Sign Endpoint
+
+Sign messages without broadcasting:
+
+```bash
+curl -X POST https://api.bankr.bot/agent/sign \
+  -H "X-API-Key: $BANKR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "signatureType": "personal_sign",
+    "message": "Hello, Bankr!"
+  }'
+```
+
+**Supported signature types:**
+- `personal_sign` - Sign plain text messages
+- `eth_signTypedData_v4` - Sign EIP-712 typed data (permits, etc.)
+- `eth_signTransaction` - Sign transactions without broadcasting
+
+### Submit Endpoint
+
+Submit raw transactions directly:
+
+```bash
+curl -X POST https://api.bankr.bot/agent/submit \
+  -H "X-API-Key: $BANKR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction": {
+      "to": "0x...",
+      "chainId": 8453,
+      "value": "1000000000000000000",
+      "data": "0x..."
+    },
+    "waitForConfirmation": true
+  }'
+```
+
+Full API documentation: [docs.bankr.bot/agent-api](https://docs.bankr.bot/agent-api/overview)

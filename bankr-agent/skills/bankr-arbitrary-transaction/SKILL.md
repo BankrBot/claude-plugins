@@ -88,3 +88,38 @@ Submit transaction with value:
 | Invalid calldata | Ensure proper hex encoding with 0x prefix |
 | Transaction reverted | Check calldata encoding and contract state |
 | Insufficient funds | Ensure wallet has enough ETH/MATIC for gas + value |
+
+## Direct API Alternative: POST /agent/submit
+
+For programmatic transaction submission without AI processing, use the synchronous submit endpoint:
+
+```bash
+curl -X POST https://api.bankr.bot/agent/submit \
+  -H "X-API-Key: $BANKR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction": {
+      "to": "0x1234567890abcdef1234567890abcdef12345678",
+      "chainId": 8453,
+      "value": "0",
+      "data": "0xa9059cbb..."
+    },
+    "description": "ERC20 transfer",
+    "waitForConfirmation": true
+  }'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "transactionHash": "0x...",
+  "status": "success",
+  "blockNumber": "12345678",
+  "gasUsed": "21000",
+  "signer": "0x...",
+  "chainId": 8453
+}
+```
+
+This endpoint returns immediately without the async job workflow.

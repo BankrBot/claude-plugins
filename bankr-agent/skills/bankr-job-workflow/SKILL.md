@@ -71,3 +71,31 @@ If polling fails:
 1. Retry after brief delay
 2. Job continues server-side regardless
 3. Can resume polling with same jobId
+
+## Synchronous Endpoints (Alternative)
+
+For direct operations without AI processing, use these synchronous endpoints:
+
+### POST /agent/sign
+Sign messages, typed data, or transactions without broadcasting.
+
+```bash
+curl -X POST https://api.bankr.bot/agent/sign \
+  -H "X-API-Key: $BANKR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"signatureType": "personal_sign", "message": "Hello!"}'
+```
+
+**Signature types**: `personal_sign`, `eth_signTypedData_v4`, `eth_signTransaction`
+
+### POST /agent/submit
+Submit raw transactions directly to the blockchain.
+
+```bash
+curl -X POST https://api.bankr.bot/agent/submit \
+  -H "X-API-Key: $BANKR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"transaction": {"to": "0x...", "chainId": 8453, "value": "1000000000000000000"}}'
+```
+
+These endpoints return immediately (no polling required).
