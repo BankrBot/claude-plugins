@@ -1,6 +1,6 @@
 {
   "name": "bankr-agent",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Integration with Bankr API for crypto trading, market analysis, and Polymarket predictions",
   "author": {
     "name": "Bankr Team"
