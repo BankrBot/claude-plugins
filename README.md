@@ -79,6 +79,10 @@ bunx skills add BankrBot/claude-plugins
 - Node.js 20+
 - USDC on Base (for x402 payments)
 
+## Community Examples
+
+See [community-examples/](./community-examples/) for real-world examples of Bankr workflows contributed by the community.
+
 ## Links
 
 - [Bankr](https://bankr.bot)
