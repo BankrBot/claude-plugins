@@ -1,16 +1,22 @@
 ---
-name: Bankr Agent - Safety & Access Control
-description: This skill should be used when the user asks about "API key security", "read-only key", "IP whitelist", "rate limits", "dedicated wallet", "agent wallet", "key rotation", "access control", or any safety, security, or access control topic related to Bankr.
-version: 1.0.0
+name: bankr-safety
+description: "Use when configuring Bankr API key security, setting up read-only keys, enabling IP whitelisting, managing rate limits, creating dedicated agent wallets, rotating keys, or addressing any safety and access control topic for Bankr API and CLI integrations."
 ---
 
-# Safety & Access Control
+# Bankr Safety & Access Control
 
-Comprehensive safety guidance for using the Bankr API and CLI.
+Security best practices and access control configuration for the Bankr API and CLI.
 
-## API Key Types
+## Workflow
 
-Bankr uses a single key format (`bk_...`) with capability flags:
+1. Set up API key with appropriate capability flags
+2. Configure access restrictions (read-only, IP whitelist) based on use case
+3. Create a dedicated agent wallet for autonomous agents
+4. Follow the pre-deployment checklist before going live
+
+## API Key Capability Flags
+
+Bankr uses a single key format (`bk_...`) with capability flags managed at [bankr.bot/api](https://bankr.bot/api):
 
 | Flag | Controls | Default |
 |------|----------|---------|
@@ -18,41 +24,27 @@ Bankr uses a single key format (`bk_...`) with capability flags:
 | `llmGatewayEnabled` | LLM Gateway at `llm.bankr.bot` | false |
 | `readOnly` | Restricts agent to read-only tools | false |
 
-Manage flags at [bankr.bot/api](https://bankr.bot/api).
+## Read-Only Keys
 
-## Read-Only API Keys
+When `readOnly: true`, write tools are filtered from the agent session:
 
-When `readOnly: true`, all write tools are filtered from the agent session:
-
-**Allowed:** Balances, prices, analytics, portfolio, research
-**Blocked:** Swaps, transfers, NFT purchases, staking, orders, token launches, leverage, Polymarket bets, claims
-
-The `/agent/sign` and `/agent/submit` endpoints return 403 for read-only keys.
+- **Allowed:** balances, prices, analytics, portfolio, research
+- **Blocked:** swaps, transfers, NFT purchases, staking, orders, token launches, leverage, Polymarket bets, claims
+- `/agent/sign` and `/agent/submit` return 403 for read-only keys
 
 ## IP Whitelisting
 
-Set `allowedIps` on your API key to restrict usage to specific IPs. Requests from non-whitelisted IPs are rejected with 403.
-
-- Empty array = all IPs allowed (default)
-- Non-empty array = only listed IPs can use the key
+Set `allowedIps` on your API key to restrict to specific IPs (403 for non-listed). Empty array = all IPs allowed (default).
 
 ## Dedicated Agent Wallet
 
-When building autonomous agents, create a **separate Bankr account** rather than using your personal wallet:
+For autonomous agents, create a **separate Bankr account** instead of using a personal wallet:
 
-- **Limited exposure** — compromised key only exposes agent wallet funds
+- **Limited exposure** — compromised key only affects agent wallet funds
 - **Clear accounting** — agent transactions isolated from personal activity
-- **Independent controls** — apply stricter access controls without affecting personal use
 - **Easy revocation** — disable agent account without disrupting primary wallet
 
-### Recommended Funding
-
-| Chain | Gas Buffer | Trading Capital |
-|-------|-----------|-----------------|
-| Base | 0.01-0.05 ETH | As needed |
-| Polygon | 5-10 MATIC | As needed |
-| Ethereum | 0.05-0.1 ETH | As needed |
-| Solana | 0.1-0.5 SOL | As needed |
+Recommended gas buffers: Base 0.01–0.05 ETH, Polygon 5–10 MATIC, Ethereum 0.05–0.1 ETH, Solana 0.1–0.5 SOL.
 
 ## Rate Limits
 
@@ -62,30 +54,22 @@ When building autonomous agents, create a **separate Bankr account** rather than
 | Bankr Club | 1,000 messages/day |
 | Custom | Set per API key |
 
-Reset window is 24 hours from first message (rolling), not midnight.
+Reset window is 24 hours rolling from first message, not midnight.
 
 ## Key Management
 
 - Store keys in environment variables (`BANKR_API_KEY`, `BANKR_LLM_KEY`), never in source code
 - Add `~/.bankr/` and `.env` to `.gitignore`
-- Rotate keys periodically at [bankr.bot/api](https://bankr.bot/api)
-- Revoke immediately if compromised
-- Use separate keys for Agent API vs LLM Gateway if needed
-
-## Transaction Safety
-
-- **Test first** — small amounts on Base/Polygon before scaling
-- **Verify recipients** — double-check addresses before transfers
-- **Gas buffer** — keep enough native tokens for gas
-- **Immediate execution** — `/agent/submit` executes with no confirmation prompt
-- **Understand calldata** — verify trusted source for arbitrary transactions
+- Rotate keys periodically at [bankr.bot/api](https://bankr.bot/api); revoke immediately if compromised
+- Use separate keys for Agent API vs LLM Gateway when needed
 
 ## Pre-Deployment Checklist
 
-- Use a dedicated agent wallet, not your personal account
-- Fund with limited amounts appropriate to purpose
-- Set read-only if agent only queries data
-- Configure IP whitelisting for server-side agents
-- Store keys in environment variables
-- Test with small amounts first
-- Implement error handling for rate limits (429) and access control (403)
+1. Use a dedicated agent wallet, not your personal account
+2. Fund with limited amounts appropriate to purpose
+3. Set read-only if agent only queries data
+4. Configure IP whitelisting for server-side agents
+5. Store keys in environment variables
+6. Test with small amounts on Base/Polygon before scaling
+7. Implement error handling for rate limits (429) and access control (403)
+8. Verify recipients and understand calldata before arbitrary transactions
