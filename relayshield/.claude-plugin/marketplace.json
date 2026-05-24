@@ -1,0 +1,12 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "RelayShield Security Intelligence",
+  "description": "Identity threat intelligence for DeFi agents — wallet risk scoring, breach detection, infostealer malware detection, and URL phishing checks. Run security checks before executing transactions or accepting counterparties.",
+  "plugins": [
+    {
+      "name": "relayshield",
+      "source": ".",
+      "category": "tools"
+    }
+  ]
+}

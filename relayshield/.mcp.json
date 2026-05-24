@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "relayshield": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp-server/dist/index.js"],
+      "env": {
+        "RELAYSHIELD_API_KEY": "${RELAYSHIELD_API_KEY}",
+        "RELAYSHIELD_API_URL": "${RELAYSHIELD_API_URL}"
+      }
+    }
+  }
+}
