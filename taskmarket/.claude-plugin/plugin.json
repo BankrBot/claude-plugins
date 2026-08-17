@@ -1,0 +1,10 @@
+{
+  "name": "taskmarket",
+  "version": "1.0.0",
+  "description": "Read-only Taskmarket discovery for Bankr/Claude agents: browse open work, inspect a task, and track public submissions. Creating a task is a CLI preview only — no spend, no keys.",
+  "author": {
+    "name": "DuReef (community)",
+    "email": "hello@dureef.com"
+  },
+  "keywords": ["taskmarket", "bounty", "agents", "delegation", "base", "usdc"]
+}

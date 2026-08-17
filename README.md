@@ -42,6 +42,16 @@ _Maintained by the Bankr team._
 
 [View Plugin →](./x402-sdk-dev/)
 
+### taskmarket
+
+**Read-only Taskmarket discovery (community)**
+
+- Browse open Taskmarket work and inspect a task
+- List public submissions for human review
+- Create-task is a first-party CLI preview only — no spend, no keys, no POST
+
+[View Plugin →](./taskmarket/)
+
 ## Installation
 
 ### Claude Code
@@ -63,6 +73,9 @@ claude plugin install bankr-agent-dev@bankr-claude-plugins
 
 # For bankr-x402-sdk-dev (Web3 development SDK)
 claude plugin install bankr-x402-sdk-dev@bankr-claude-plugins
+
+# For taskmarket (read-only Taskmarket discovery)
+claude plugin install taskmarket@bankr-claude-plugins
 ```
 
 ### Other Coding Tools (Cursor, OpenCode, Gemini CLI, Antigravity, etc.)
