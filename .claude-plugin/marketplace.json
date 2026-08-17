@@ -39,6 +39,17 @@
       "source": "./bankr-agent-dev",
       "category": "development",
       "homepage": "https://bankr.bot"
+    },
+    {
+      "name": "taskmarket",
+      "description": "Read-only Taskmarket discovery: browse open work, inspect a task, and list public submissions. Create-task is a CLI preview only — no spend, no keys.",
+      "author": {
+        "name": "DuReef (community)",
+        "email": "hello@dureef.com"
+      },
+      "source": "./taskmarket",
+      "category": "tools",
+      "homepage": "https://taskmarket.dev"
     }
   ]
 }

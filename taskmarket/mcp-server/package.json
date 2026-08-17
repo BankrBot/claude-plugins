@@ -1,0 +1,15 @@
+{
+  "name": "taskmarket-mcp-server",
+  "version": "1.0.0",
+  "description": "GET-only Taskmarket MCP server (no wallet, no spend)",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test src/*.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}
